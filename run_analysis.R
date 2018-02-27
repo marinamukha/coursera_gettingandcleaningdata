@@ -52,18 +52,15 @@ trainData <- rename(trainData, activity = trainLabel)
 testData  <- cbind(testSubjects, testLabel, type = "test", test)
 testData  <- rename(testData, activity = testLabel)
 
-## make final table - append, not merge
+## make final table - append/bind
 trackData <- rbind(trainData, testData)
 
-## check for the NA's - althought in the description it's written 
-colSums(is.na(trackData))
+## check for the NA's - althought in the description it's written there are nonne 
 all(colSums(is.na(trackData))==0) 
 
 ## subset - only mean and stdev vars
 trackData <- trackData[ , grepl("(mean\\.|mean$|std|id|activity|type)", 
                                 names(trackData))]
-names(trackData)
-names <- gsub("-", "", names)
 
 ## average and sort
 avgtrackData <- aggregate(. ~ id + activity, data = trackData, mean)
@@ -74,3 +71,7 @@ avgtrackData$type <- factor(avgtrackData$type, levels = c(1, 2),
 ## remove unnecessary data
 rm(activity, features, test, testData, testLabels, testSubjects, train,
    trainData, trainLabels, trainSubjects, names, testLabel, trainLabel)
+
+## export data
+write.table(trackData, "./trackData.txt", sep="\t")
+write.table(avgtrackData, "./avgtrackData.txt", sep="\t")
