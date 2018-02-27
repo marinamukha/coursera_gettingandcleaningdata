@@ -48,8 +48,8 @@ This variable identifies the subject (person) in the sample.
 
 Integer, 1...30
 
-### Variable 2: activity
-This variable identifies the type of activity. Different subjects can be involved in different activities.
+### Variable 2-3: activity & activityid
+These variables identify the type of activity. Different subjects can be involved in different activities.
 
 Factor with 6 levels:
 
@@ -62,7 +62,7 @@ Identifier | Activity
 5 | "WALKING_DOWNSTAIRS"
 6 | "WALKING_UPSTAIRS"
 
-### Variable 3: type
+### Variable 4: type
 This variable identifies whether the person is in train or test dataset. Each subject belongs o one group only.
 
 Factor with two levels:
@@ -72,7 +72,7 @@ Identifier | Group
 1 | "train"
 2 | "test"
 
-### Variables 4-76: time-varying mean and standard deviation values of various characteristics.
+### Variables 5-77: time-varying mean and standard deviation values of various characteristics.
 Continuous variables in range [-1, 1]. The names of these variables are constructed in the following manner: 
 * prefix t/f - to denote time/frequency domain signals
 * variable name
