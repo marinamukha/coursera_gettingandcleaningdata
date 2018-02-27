@@ -1,5 +1,5 @@
 # Human Activity Recognition Using Smartphones
-## Peer-reviewd assignment for the coursera "Getting and Cleaning Data" course
+## Peer-reviewed assignment for the coursera "Getting and Cleaning Data" course
 
 ## Data Source
 The data was obtained from the UC Irvine Machine Learning Repository. It includes information on 30 volunteers who performed various kinds of activities wearing a smartphone. The data was recorded by using the embedded accelerometer and gyroscope. The obtained dataset was split in two subsamples - training set (70%) and test set (30%). More technical information as well as the dataset can be found [here](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones).
