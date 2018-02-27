@@ -15,4 +15,4 @@ This file explains step-by-step the analysis conducted in order to obtain the cl
 1. Aggregate data
 	1. Using the *id* and *activity* as identifier, collapse the dataset to the mean values for each variable (in total 40 observations) using the *aggregate* function.
   
-  As a result of this analysis, there are two data frames: *trackData* which is a tidy dataset of cariables of means and standard deviations of characteristics with identifiers (10299 observations of 76 variables); and *avgtrackData* which represents the mean values per subject per activity (40 osbervations of  76 variables).
+  As a result of this analysis, there are two data frames: *trackData* which is a tidy dataset of cariables of means and standard deviations of characteristics with identifiers (10299 observations of 77 variables); and *avgtrackData* which represents the mean values per subject per activity (180 osbervations of  77 variables).
