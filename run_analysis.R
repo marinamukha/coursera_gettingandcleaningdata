@@ -73,5 +73,5 @@ rm(activity, features, test, testData, testLabels, testSubjects, train,
    trainData, trainLabels, trainSubjects, names, testLabel, trainLabel)
 
 ## export data
-write.table(trackData, "./trackData.txt", sep="\t")
-write.table(avgtrackData, "./avgtrackData.txt", sep="\t")
+write.table(trackData, "./trackData.txt", sep="\t", row.names = FALSE)
+write.table(avgtrackData, "./avgtrackData.txt", sep="\t", row.names = FALSE)
