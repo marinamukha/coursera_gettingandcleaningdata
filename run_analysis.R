@@ -4,6 +4,7 @@
 ################################################################################
 ## Peer-graded Assignment: Getting and Cleaning Data Course Project
 ################################################################################
+rm(list = ls())
 setwd("./III/rdir")
 library(plyr)
 library(dplyr)
@@ -34,28 +35,26 @@ testLabels  <- read.table("./data/UCI HAR Dataset/test/y_test.txt")
 
 activity <- read.table("./data/UCI HAR Dataset/activity_labels.txt")
 
-## merge activity with labels
-trainLabels <- merge(trainLabels, activity, by.x = "V1", by.y = "V1",
-                      all = TRUE)
-trainLabel  <- as.character(trainLabels[, 2])
-testLabels  <- merge(testLabels, activity, by.x = "V1", by.y = "V1",
-                      all = TRUE)
-testLabel   <- as.character(testLabels[, 2])
-
 ## rename data frames with labels & subjects
 trainSubjects <- rename(trainSubjects, id = V1)
 testSubjects <- rename(testSubjects, id = V1)
 
 ## make two big tables - combine data with subjects and activities
-trainData <- cbind(trainSubjects, trainLabel, type = "train", train)
-trainData <- rename(trainData, activity = trainLabel)
-testData  <- cbind(testSubjects, testLabel, type = "test", test)
-testData  <- rename(testData, activity = testLabel)
+trainData <- cbind(trainSubjects, trainLabels, type = "train", train)
+testData  <- cbind(testSubjects, testLabels, type = "test", test)
 
-## make final table - append/bind
-trackData <- rbind(trainData, testData)
+## merge activity with labels
+trainData1 <- merge(activity, trainData, by.x = "V1", by.y = "V1",
+                      all = TRUE)
+testData1  <- merge(activity, testData, by.x = "V1", by.y = "V1",
+                      all = TRUE)
+trainData1 <- rename(trainData1, activityid = V1, activity = V2)
+testData1 <- rename(testData1, activityid = V1, activity = V2)
 
-## check for the NA's - althought in the description it's written there are nonne 
+## make final table - append, not merge
+trackData <- rbind(trainData1, testData1)
+
+## check for the NA's - althought in the description it's written 
 all(colSums(is.na(trackData))==0) 
 
 ## subset - only mean and stdev vars
@@ -70,7 +69,8 @@ avgtrackData$type <- factor(avgtrackData$type, levels = c(1, 2),
 
 ## remove unnecessary data
 rm(activity, features, test, testData, testLabels, testSubjects, train,
-   trainData, trainLabels, trainSubjects, names, testLabel, trainLabel)
+   trainData, trainLabels, trainSubjects, names, testLabel, trainLabel,
+   testData1, trainData1)
 
 ## export data
 write.table(trackData, "./trackData.txt", sep="\t", row.names = FALSE)
